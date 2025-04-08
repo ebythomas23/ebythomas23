@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Portfolio | Alex Johnson</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4cc9f0;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ade80;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: scale(1.05);
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: 100%;
+            width: 2px;
+            background: #e5e7eb;
+        }
+        
+        .soft-skill-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .soft-skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+            }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .section-divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 60px;
+            color: rgba(67, 97, 238, 0.1);
+            font-family: Georgia, serif;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold gradient-text">Alex Johnson</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition font-medium">About</a>
+                    <a href="#experience" class="text-gray-700 hover:text-blue-600 transition font-medium">Experience</a>
+                    <a href="#projects" class="text-gray-700 hover:text-blue-600 transition font-medium">Projects</a>
+                    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition font-medium">Skills</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition font-medium">Testimonials</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition font-medium">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-24 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-20 w-32 h-32 rounded-full bg-white opacity-20"></div>
+            <div class="absolute bottom-10 right-20 w-40 h-40 rounded-full bg-white opacity-20"></div>
+            <div class="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-white opacity-20"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">Alex Johnson</span></h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">Data Scientist | AI Enthusiast | Problem Solver</h2>
+                    <p class="text-lg mb-8 opacity-90 max-w-lg">Transforming complex data into actionable insights through machine learning, statistical analysis, and compelling visualizations to drive business decisions.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition shadow-md hover:shadow-lg flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i> Contact Me
+                        </a>
+                        <a href="#projects" class="border-2 border-white text-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-blue-600 transition shadow-md hover:shadow-lg flex items-center">
+                            <i class="fas fa-code mr-2"></i> View Projects
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative floating">
+                        <div class="absolute inset-0 bg-blue-400 rounded-full opacity-20 animate-pulse"></div>
+                        <div class="bg-white p-2 rounded-full shadow-xl relative pulse">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Profile Picture" class="w-64 h-64 rounded-full object-cover border-4 border-white">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold gradient-text">About Me</h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Passionate about leveraging data to solve real-world problems and create meaningful impact</p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl opacity-50 -z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="About Me" class="rounded-xl shadow-lg w-72 h-72 object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <p class="text-lg mb-6 leading-relaxed">
+                        I'm a passionate <span class="font-semibold text-blue-600">Data Scientist</span> with <span class="font-semibold">2+ years of hands-on experience</span> in transforming raw data into actionable insights. My journey in data science began with a fascination for patterns and predictions, which has now evolved into a professional pursuit of creating data-driven solutions.
+                    </p>
+                    <p class="text-lg mb-8 leading-relaxed">
+                        Through my academic projects, professional experience, and certifications, I've developed expertise in <span class="font-semibold">machine learning, statistical analysis, and data visualization</span>. I specialize in building predictive models, designing data pipelines, and communicating insights to stakeholders. My approach combines technical rigor with business acumen to deliver measurable impact.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 px-4 py-3 rounded-lg flex items-center shadow-sm border border-gray-100">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-graduation-cap text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Education</p>
+                                <p class="font-medium">M.Sc in Data Science</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 px-4 py-3 rounded-lg flex items-center shadow-sm border border-gray-100">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-briefcase text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Experience</p>
+                                <p class="font-medium">2+ Years</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 px-4 py-3 rounded-lg flex items-center shadow-sm border border-gray-100">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-certificate text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Certifications</p>
+                                <p class="font-medium">6+ Completed</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-50 to-purple-50 px-4 py-3 rounded-lg flex items-center shadow-sm border border-gray-100">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-project-diagram text-blue-600"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Projects</p>
+                                <p class="font-medium">15+ Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold gradient-text">My Professional Journey</h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">A timeline of my education, work experience, and professional development</p>
+            </div>
+            
+            <div class="relative">
+                <!-- Education -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-university text-blue-600"></i>
+                        </div>
+                        <span>Education</span>
+                    </h3>
+                    <div class="space-y-8 relative">
+                        <div class="timeline-item pl-8 relative">
+                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                                <h4 class="font-bold text-lg">Stanford University</h4>
+                                <p class="text-blue-600 mb-2">M.Sc in Data Science, 2021 - 2023</p>
+                                <p class="mb-3">Specialized in machine learning and big data analytics with a focus on practical applications and research. Thesis on "Explainable AI for Healthcare Applications".</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-blue-50 text-blue-800 text-xs px-3 py-1 rounded-full">GPA: 3.9/4.0</span>
+                                    <span class="bg-blue-50 text-blue-800 text-xs px-3 py-1 rounded-full">Graduate Research Fellow</span>
+                                    <span class="bg-blue-50 text-blue-800 text-xs px-3 py-1 rounded-full">Published 2 Papers</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item pl-8 relative">
+                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                                <h4 class="font-bold text-lg">University of California, Berkeley</h4>
+                                <p class="text-blue-600 mb-2">B.Sc in Computer Science, 2017 - 2021</p>
+                                <p class="mb-3">Majored in Computer Science with minor in Statistics. Focused on algorithms, data structures, and statistical modeling.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-blue-50 text-blue-800 text-xs px-3 py-1 rounded-full">GPA: 3.8/4.0</span>
+                                    <span class="bg-blue-50 text-blue-800 text-xs px-3 py-1 rounded-full">Dean's List</span>
+                                    <span class="bg-blue-50 text-blue-800 text-xs px-3 py-1 rounded-full">Data Science Club President</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-briefcase text-blue-600"></i>
+                        </div>
+                        <span>Professional Experience</span>
+                    </h3>
+                    <div class="space-y-8">
+                        <div class="timeline-item pl-8 relative">
+                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                                <h4 class="font-bold text-lg">TechData Analytics</h4>
+                                <p class="text-blue-600 mb-2">Data Scientist | June 2022 - Present</p>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                    <li>Led development of predictive models for customer churn with 89% accuracy using ensemble methods, resulting in 18% reduction in churn rate</li>
+                                    <li>Designed and implemented automated ETL pipelines reducing data processing time by 45% using Python and Apache Airflow</li>
+                                    <li>Created interactive dashboards in Tableau that improved marketing campaign ROI by 22% through better targeting</li>
+                                    <li>Mentored 3 junior data scientists in model development and deployment best practices</li>
+                                    <li>Collaborated with engineering teams to deploy 4 machine learning models into production</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item pl-8 relative">
+                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                                <h4 class="font-bold text-lg">University Research Lab</h4>
+                                <p class="text-blue-600 mb-2">Research Assistant | Jan 2021 - May 2022</p>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                    <li>Analyzed large datasets of medical records to identify patterns in disease progression using clustering techniques</li>
+                                    <li>Built NLP models for sentiment analysis of patient feedback with 85% accuracy using BERT and LSTM</li>
+                                    <li>Published research paper on "Machine Learning Applications in Healthcare" in IEEE journal</li>
+                                    <li>Presented findings at the National Data Science Conference 2022 to audience of 200+ professionals</li>
+                                    <li>Developed Python package for medical data preprocessing used by 15+ researchers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item pl-8 relative">
+                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></div>
+                            <div class="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+                                <h4 class="font-bold text-lg">DataStart Inc.</h4>
+                                <p class="text-blue-600 mb-2">Data Science Intern | Summer 2020</p>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                    <li>Developed recommendation system for e-commerce platform increasing average order value by 12%</li>
+                                    <li>Performed market basket analysis to identify product affinities and optimize promotions</li>
+                                    <li>Created automated reports using SQL and Python that saved 15 hours/week of manual work</li>
+                                    <li>Presented findings to executive team which influenced inventory planning decisions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Certifications -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-certificate text-blue-600"></i>
+                        </div>
+                        <span>Certifications & Achievements</span>
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-500 hover:shadow-md transition">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                <i class="fab fa-google text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Google Professional Data Engineer</h4>
+                            <p class="text-blue-600 mb-2">Google Cloud | 2023</p>
+                            <p class="text-sm text-gray-600">Validated expertise in designing and building data processing systems on GCP</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-500 hover:shadow-md transition">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                <i class="fab fa-microsoft text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Microsoft Certified: Azure Data Scientist</h4>
+                            <p class="text-blue-600 mb-2">Microsoft | 2022</p>
+                            <p class="text-sm text-gray-600">Demonstrated skills in Azure ML, cloud computing, and model deployment</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-500 hover:shadow-md transition">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                <i class="fas fa-brain text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Deep Learning Specialization</h4>
+                            <p class="text-blue-600 mb-2">DeepLearning.AI | 2021</p>
+                            <p class="text-sm text-gray-600">Mastered neural networks, CNN, RNN, and advanced deep learning concepts</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-500 hover:shadow-md transition">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                <i class="fas fa-trophy text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Kaggle Competitions</h4>
+                            <p class="text-blue-600 mb-2">Top 5% in 3 competitions</p>
+                            <p class="text-sm text-gray-600">Achieved high rankings in predictive modeling challenges</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-500 hover:shadow-md transition">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">Tableau Desktop Certified</h4>
+                            <p class="text-blue-600 mb-2">Tableau | 2021</p>
+                            <p class="text-sm text-gray-600">Validated skills in data visualization and dashboard creation</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-sm border-t-4 border-blue-500 hover:shadow-md transition">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                                <i class="fas fa-database text-blue-600 text-xl"></i>
+                            </div>
+                            <h4 class="font-bold text-lg mb-2">AWS Certified Data Analytics</h4>
+                            <p class="text-blue-600 mb-2">Amazon Web Services | 2022</p>
+                            <p class="text-sm text-gray-600">Demonstrated expertise in AWS data analytics services</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold gradient-text">Featured Projects</h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">A selection of my data science projects demonstrating technical skills and business impact</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Project 1" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">Machine Learning</span>
+                            <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded ml-2">Business Impact</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl">Customer Churn Prediction System</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Developed an ensemble model (XGBoost + Random Forest) to predict customer churn with 89% accuracy, integrated with business workflow to reduce churn by 18%.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">XGBoost</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Scikit-learn</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Flask API</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">SHAP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Project 2" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">Data Visualization</span>
+                            <span class="bg-green-600 text-white text-xs px-2 py-1 rounded ml-2">Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl">Financial Analytics Dashboard</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Interactive dashboard visualizing stock market trends, portfolio performance, and risk metrics used by 50+ financial advisors daily.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Tableau</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Pandas</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">SQL</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1674&q=80" alt="Project 3" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">NLP</span>
+                            <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded ml-2">Deep Learning</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl">Multilingual Sentiment Analysis</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Real-time sentiment analysis of customer reviews in 5 languages using BERT and LSTM models deployed as microservice.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">HuggingFace</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Flask</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Docker</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Project 4" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">Healthcare</span>
+                            <span class="bg-red-600 text-white text-xs px-2 py-1 rounded ml-2">Research</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl">Disease Progression Prediction</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Developed time-series models to predict disease progression in chronic patients, achieving 78% accuracy in clinical trials.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">PyTorch</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Medical Data</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">LSTM</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">SHAP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="project-card group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Project 5" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">Recommendation</span>
+                            <span class="bg-indigo-600 text-white text-xs px-2 py-1 rounded ml-2">E-commerce</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl">Personalized Product Recommender</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">Hybrid recommendation system combining collaborative filtering and content-based approaches increased average order value by 14%.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Surprise</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">NLP</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Flask</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">A/B Testing</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="project-card group">
+                    <div class="relative overflow-hidden h-48">
+                        <img src="https://images.unsplash.com/photo-1622473590773-f588134b6ce7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1670&q=80" alt="Project 6" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-4">
+                            <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded">Computer Vision</span>
+                            <span class="bg-teal-600 text-white text-xs px-2 py-1 rounded ml-2">Deep Learning</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl">Medical Image Classification</h3>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fab fa-github"></i></a>
+                                <a href="#" class="text-blue-600 hover:text-blue-800"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-4">CNN model for classifying medical images with 92% accuracy, deployed in hospital pilot program.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Transfer Learning</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">Grad-CAM</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full">DICOM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition shadow-md hover:shadow-lg">
+                    <i class="fas fa-archive mr-2"></i> View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold gradient-text">Technical Skills</h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">The tools and technologies I use to transform data into insights</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Programming Languages -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition border-t-4 border-blue-500">
+                    <h3 class="font-bold text-xl mb-4 flex items-center">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full mr-3">
+                            <i class="fas fa-code text-blue-600"></i>
+                        </div>
+                        <span>Programming</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="skill-badge bg-blue-50 text-blue-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-blue-100">
+                            <i class="fab fa-python mr-2 text-blue-600"></i> Python
+                        </div>
+                        <div class="skill-badge bg-blue-50 text-blue-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-blue-100">
+                            <i class="fas fa-database mr-2 text-blue-600"></i> SQL
+                        </div>
+                        <div class="skill-badge bg-blue-50 text-blue-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-blue-100">
+                            <i class="fab fa-r-project mr-2 text-blue-600"></i> R
+                        </div>
+                        <div class="skill-badge bg-blue-50 text-blue-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-blue-100">
+                            <i class="fab fa-js mr-2 text-blue-600"></i> JavaScript
+                        </div>
+                        <div class="skill-badge bg-blue-50 text-blue-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-blue-100">
+                            <i class="fab fa-java mr-2 text-blue-600"></i> Java
+                        </div>
+                        <div class="skill-badge bg-blue-50 text-blue-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-blue-100">
+                            <i class="fas fa-terminal mr-2 text-blue-600"></i> Bash
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Science Tools -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition border-t-4 border-purple-500">
+                    <h3 class="font-bold text-xl mb-4 flex items-center">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full mr-3">
+                            <i class="fas fa-chart-line text-purple-600"></i>
+                        </div>
+                        <span>Data Science</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="skill-badge bg-purple-50 text-purple-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-purple-100">
+                            <i class="fas fa-brain mr-2 text-purple-600"></i> Machine Learning
+                        </div>
+                        <div class="skill-badge bg-purple-50 text-purple-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-purple-100">
+                            <i class="fas fa-chart-bar mr-2 text-purple-600"></i> Statistical Analysis
+                        </div>
+                        <div class="skill-badge bg-purple-50 text-purple-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-purple-100">
+                            <i class="fas fa-project-diagram mr-2 text-purple-600"></i> Deep Learning
+                        </div>
+                        <div class="skill-badge bg-purple-50 text-purple-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-purple-100">
+                            <i class="fas fa-comment-dots mr-2 text-purple-600"></i> NLP
+                        </div>
+                        <div class="skill-badge bg-purple-50 text-purple-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-purple-100">
+                            <i class="fas fa-eye mr-2 text-purple-600"></i> Computer Vision
+                        </div>
+                        <div class="skill-badge bg-purple-50 text-purple-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-purple-100">
+                            <i class="fas fa-robot mr-2 text-purple-600"></i> AI/ML Ops
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Technologies & Frameworks -->
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition border-t-4 border-indigo-500">
+                    <h3 class="font-bold text-xl mb-4 flex items-center">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full mr-3">
+                            <i class="fas fa-tools text-indigo-600"></i>
+                        </div>
+                        <span>Technologies</span>
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="skill-badge bg-indigo-50 text-indigo-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-indigo-100">
+                            <i class="fab fa-python mr-2 text-indigo-600"></i> Pandas/Numpy
+                        </div>
+                        <div class="skill-badge bg-indigo-50 text-indigo-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-indigo-100">
+                            <i class="fas fa-project-diagram mr-2 text-indigo-600"></i> TensorFlow/PyTorch
+                        </div>
+                        <div class="skill-badge bg-indigo-50 text-indigo-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-indigo-100">
+                            <i class="fas fa-cloud mr-2 text-indigo-600"></i> Big Data Tools
+                        </div>
+                        <div class="skill-badge bg-indigo-50 text-indigo-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-indigo-100">
+                            <i class="fas fa-server mr-2 text-indigo-600"></i> Docker/Kubernetes
+                        </div>
+                        <div class="skill-badge bg-indigo-50 text-indigo-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-indigo-100">
+                            <i class="fas fa-database mr-2 text-indigo-600"></i> SQL/NoSQL
+                        </div>
+                        <div class="skill-badge bg-indigo-50 text-indigo-800 px-4 py-2 rounded-full flex items-center shadow-sm border border-indigo-100">
+                            <i class="fas fa-chart-pie mr-2 text-indigo-600"></i> Tableau/Power BI
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Skill Meter -->
+            <div class="mt-8 bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition">
+                <h3 class="font-bold text-xl mb-6 flex items-center">
+                    <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full mr-3">
+                        <i class="fas fa-chart-pie text-blue-600"></i>
+                    </div>
+                    <span>Skill Proficiency</span>
+                </h3>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Python Programming</span>
+                            <span class="text-blue-600">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2.5 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Machine Learning</span>
+                            <span class="text-blue-600">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2.5 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Data Visualization</span>
+                            <span class="text-blue-600">85%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2.5 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">SQL & Databases</span>
+                            <span class="text-blue-600">88%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2.5 rounded-full" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Deep Learning</span>
+                            <span class="text-blue-600">82%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2.5 rounded-full" style="width: 82%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="font-medium">Cloud Platforms</span>
+                            <span class="text-blue-600">80%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-gradient-to-r from-blue-400 to-blue-600 h-2.5 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Soft Skills Section -->
+            <div class="mt-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold gradient-text">Soft Skills</h2>
+                    <div class="section-divider"></div>
+                    <p class="text-gray-600 max-w-2xl mx-auto">The interpersonal and professional skills that complement my technical expertise</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-comments text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Communication</h3>
+                        <p class="text-gray-600">Effectively conveying complex data insights to both technical and non-technical stakeholders through clear presentations, reports, and visualizations.</p>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-users text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Collaboration</h3>
+                        <p class="text-gray-600">Working effectively with cross-functional teams including engineers, product managers, and business analysts to deliver data-driven solutions.</p>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-lightbulb text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Problem Solving</h3>
+                        <p class="text-gray-600">Breaking down complex business problems into manageable components and developing innovative, data-driven solutions.</p>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-clock text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Time Management</h3>
+                        <p class="text-gray-600">Balancing multiple projects and deadlines while maintaining high-quality deliverables through effective prioritization.</p>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-book text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Continuous Learning</h3>
+                        <p class="text-gray-600">Constantly updating skills through courses, certifications, and hands-on projects to stay current in the rapidly evolving field.</p>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Business Acumen</h3>
+                        <p class="text-gray-600">Understanding business objectives and aligning data solutions to drive measurable impact and ROI for organizations.</p>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-pencil-alt text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Attention to Detail</h3>
+                        <p class="text-gray-600">Meticulous approach to data cleaning, analysis, and validation to ensure accuracy and reliability of insights.</p>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-handshake text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Adaptability</h3>
+                        <p class="text-gray-600">Quickly adjusting to new tools, technologies, and business requirements in fast-paced environments while maintaining productivity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold gradient-text">Testimonials</h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">What colleagues and mentors say about my work</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Sarah Miller" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah Miller</h4>
+                            <p class="text-blue-600 text-sm">Director of Data Science, TechData Analytics</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"Alex's ability to translate complex data into actionable business insights is exceptional. The churn prediction model he developed became a cornerstone of our customer retention strategy, directly contributing to an 18% reduction in churn. His technical skills are matched by his clear communication and collaborative approach."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80" alt="Dr. James Chen" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Dr. James Chen</h4>
+                            <p class="text-blue-600 text-sm">Research Lead, Stanford University</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"During his graduate research, Alex demonstrated remarkable problem-solving skills. His work on explainable AI for healthcare applications was published in a top-tier journal and has been cited by multiple researchers. He has a rare combination of technical depth and the ability to explain complex concepts clearly."</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Michael Rodriguez" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Michael Rodriguez</h4>
+                            <p class="text-blue-600 text-sm">VP of Marketing, TechData Analytics</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700">"The dashboards Alex created transformed how our marketing team makes decisions. He took the time to understand our needs and delivered solutions that were both powerful and intuitive to use. His work directly contributed to a 22% improvement in our campaign ROI through better targeting."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold gradient-text">Get In Touch</h2>
+                <div class="section-divider"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">I'm always open to discussing data science opportunities, collaborations, or just chatting about AI</p>
+            </div>
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                    <p class="mb-6 text-lg leading-relaxed">Feel free to reach out through any of the channels below. I typically respond within 24 hours.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-full mr-4">
+                                <i class="fas fa-envelope text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-500">Email</h4>
+                                <p class="text-blue-600 font-medium">alex.johnson@example.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-full mr-4">
+                                <i class="fab fa-linkedin-in text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-500">LinkedIn</h4>
+                                <p class="text-blue-600 font-medium">linkedin.com/in/alexjohnson-ds</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-full mr-4">
+                                <i class="fab fa-github text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-500">GitHub</h4>
+                                <p class="text-blue-600 font-medium">github.com/alexjohnson-ds</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-gradient-to-r from-blue-100 to-purple-100 p-4 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-500">Location</h4>
+                                <p class="text-blue-600 font-medium">San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4">Let's Connect</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-blue-600 text-white p-3 rounded-full hover:bg-blue-700 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-900 transition">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="bg-blue-400 text-white p-3 rounded-full hover:bg-blue-500 transition">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="bg-gray-700 text-white p-3 rounded-full hover:bg-gray-800 transition">
+                                <i class="fab fa-medium"></i>
+                            </a>
+                            <a href="#" class="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 transition">
+                                <i class="fab fa-kaggle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <form class="bg-white p-8 rounded-xl shadow-sm">
+                        <div class="mb-6">
+                            <label for="name" class="block mb-2 font-medium">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block mb-2 font-medium">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block mb-2 font-medium">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block mb-2 font-medium">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-600 hover:to-blue-700 transition shadow-md hover:shadow-lg flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold">Alex Johnson</h3>
+                    <p class="mt-2 text-gray-400">Data Scientist | AI Enthusiast | Problem Solver</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition text-xl">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                   
+</html>
